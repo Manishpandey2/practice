@@ -19,4 +19,8 @@ sequelize
     console.log("unable to connect database", error);
   });
 
+sequelize.sync({ alter: false }).then(() => {
+  console.log("migration completed");
+});
+
 module.exports = db;
