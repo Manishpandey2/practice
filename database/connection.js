@@ -7,6 +7,8 @@ const sequelize = new Sequelize(
 const db = {};
 db.Sequelize = Sequelize;
 db.sequelize = sequelize;
+db.hotel = require("./models/hotelModel")(sequelize, DataTypes);
+db.client = require("./models/clientModel")(sequelize, DataTypes);
 
 sequelize
   .authenticate()
