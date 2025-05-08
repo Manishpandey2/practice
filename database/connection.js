@@ -1,0 +1,20 @@
+const { Sequelize, DataTypes } = require("sequelize");
+
+const sequelize = new Sequelize(
+  "postgresql://postgres.gvcawfuagculqsxztyjg:HellYeahBro123@aws-0-ap-southeast-1.pooler.supabase.com:6543/postgres"
+);
+
+const db = {};
+db.Sequelize = Sequelize;
+db.sequelize = sequelize;
+
+sequelize
+  .authenticate()
+  .then(() => {
+    console.log("Database connected successfully");
+  })
+  .catch((error) => {
+    console.log("unable to connect database", error);
+  });
+
+module.exports = db;

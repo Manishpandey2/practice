@@ -1,5 +1,5 @@
 const app = require("express")();
-
+require("./database/connection");
 app.get("/hotels", (req, res) => {
   res.json("message: hotels are fetched successfully");
 });
