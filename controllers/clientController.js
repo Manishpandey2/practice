@@ -1,3 +1,4 @@
+const { where } = require("sequelize");
 const { client } = require("../database/connection");
 
 exports.fetchClient = async (req, res) => {
@@ -48,13 +49,33 @@ exports.fetchSingleClient = async (req, res) => {
     data,
   });
 };
-exports.updateClient = (req, res) => {
+exports.updateClient = async (req, res) => {
+  const id = req.params.id;
+  const { name, address, contactNumber } = req.body;
+  await client.update(
+    {
+      name: name,
+      address: address,
+      contactNumber: contactNumber,
+    },
+    {
+      where: {
+        id: id,
+      },
+    }
+  );
   res.json({
     message: "successfully update",
   });
 };
 
-exports.deleteClient = (req, res) => {
+exports.deleteClient = async (req, res) => {
+  const id = req.params.id;
+  await client.destroy({
+    where: {
+      id: id,
+    },
+  });
   res.json({
     message: "Successfully deleted",
   });
