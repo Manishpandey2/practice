@@ -9,7 +9,7 @@ const clientModel = (sequelize, DataTypes) => {
       allowNull: false,
     },
     contactNumber: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.BIGINT,
       allowNull: false,
     },
   });
