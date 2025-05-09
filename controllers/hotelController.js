@@ -1,3 +1,4 @@
+const { where } = require("sequelize");
 const { hotel } = require("../database/connection");
 
 exports.fetchHotels = async (req, res) => {
@@ -30,12 +31,33 @@ exports.addHotel = async (req, res) => {
     message: "Hotel added successfully",
   });
 };
-exports.updateHotel = (req, res) => {
+exports.updateHotel = async (req, res) => {
+  const id = req.params.id;
+  const { name, address, price, owner } = req.body;
+  await hotel.update(
+    {
+      name,
+      address,
+      price,
+      owner,
+    },
+    {
+      where: {
+        id,
+      },
+    }
+  );
   res.json({
     message: "updated successfully",
   });
 };
-exports.deleteHotel = (req, res) => {
+exports.deleteHotel = async (req, res) => {
+  const id = req.params.id;
+  await hotel.destroy({
+    where: {
+      id,
+    },
+  });
   res.json({
     message: "Deleted successfully",
   });
