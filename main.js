@@ -1,6 +1,3 @@
-const { fetchHotels, addHotel } = require("./controllers/hotelController");
-const { hotel } = require("./database/connection");
-
 const express = require("express");
 const app = express();
 require("./database/connection");

@@ -40,6 +40,14 @@ exports.addClient = async (req, res) => {
     });
 };
 
+exports.fetchSingleClient = async (req, res) => {
+  const id = parseInt(req.params.id);
+  const data = await client.findByPk(id);
+  res.json({
+    message: "Single client fetched successfully",
+    data,
+  });
+};
 exports.updateClient = (req, res) => {
   res.json({
     message: "successfully update",
